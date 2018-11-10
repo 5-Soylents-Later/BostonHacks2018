@@ -1,17 +1,16 @@
 import requests, json
-with open("./api_key.txt", "r") as token_file:
-    MYTOKEN = token_file.read()[:-1]
+from Keys import EBrite
 
 address = "Boston"
-within = "1km"
-latitude = ""
-longitude = ""
+within = "100km"
+latitude = "42"
+longitude = "-70"
 sort_by = ""
 
 response = requests.get(
     "https://www.eventbriteapi.com/v3/events/search/",
     headers = {
-        "Authorization": "Bearer " + MYTOKEN,
+        "Authorization": "Bearer " + EBrite,
     },
     verify = True,  # Verify SSL certificate
     params = {"location.address": address, \
