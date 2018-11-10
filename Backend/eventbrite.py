@@ -1,6 +1,5 @@
 import requests, json
-with open("./api_key.txt", "r") as token_file:
-    MYTOKEN = token_file.read()[:-1]
+from Keys import EBrite
 
 def getEvents(add, within, lat, long, sort_by):
     address = "Boston"
