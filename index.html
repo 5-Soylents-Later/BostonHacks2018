@@ -17,17 +17,23 @@
                   <h3> Enter a location:&nbsp;&nbsp;&nbsp;</h3>
                   <form> 
                      <div class="form-group">
-                        <input class="form-control" id="location" placeholder="Enter location">
+                        <input type="text" class="form-control" id="location" placeholder="Enter location" name="serial">
+                        <input type="submit" value="Submit" onclick="input">
                      </div>
                   </form>
                </div>
-               
+
             </div>
          </div>
       </div>
 
 
-
+      <script>
+         function input() {
+            var getInput = document.getElementById("location");
+            localStorage.setItem("storage",getInput);
+         }
+      </script>
 
    </body>
 </html>
