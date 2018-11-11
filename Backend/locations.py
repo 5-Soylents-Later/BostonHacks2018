@@ -13,7 +13,3 @@ def latlongAddress(add):
     r = requests.get(url = URL)
     data = r.json()
     return [data["results"][0]["geometry"]["location"]["lat"], data["results"][0]["geometry"]["location"]["lng"]]
-
-
-
-print(latlongAddress("91 Bay State Rd, Boston MA 02215"))

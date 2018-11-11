@@ -4,9 +4,7 @@ import bluebikes
 
 # (3) from blue bikes find nearby events
 
-
 def getEvents(lat, long):
-    # address = add
     within = "1km"
     latitude = lat
     longitude = long
@@ -40,11 +38,6 @@ def getEvents(lat, long):
                        "longitude": event["venue"]["longitude"], \
                        "localized_address_display": event["venue"]["address"]["localized_address_display"], \
                        } ]
-
-    return json.dumps(new_data, sort_keys=True, indent=4)
-
-
-
-
-
-# print(json.dumps(new_data, sort_keys=True, indent=4))
+                       
+    with open('data.json', 'w') as f:
+        f.write(json.dumps(new_data, sort_keys=True, indent=4))
