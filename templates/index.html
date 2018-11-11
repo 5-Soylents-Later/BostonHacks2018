@@ -49,16 +49,31 @@
 
          // Loop through the results array and place a marker for each
          // set of coordinates.
-         window.eqfeed_callback = function() {
-            var results = require('./data.json'); //with path
-            for (var i = 0; i < results.features.length; i++) {
-               var coords = results.features[i].geometry.coordinates;
-               var latLng = new google.maps.LatLng(coords[1],coords[0]);
-               var marker = new google.maps.Marker({
-                  position: latLng,
-                  map: map
-               });
+        function loadJSON(callback) {   
+          var xobj = new XMLHttpRequest();
+          xobj.overrideMimeType("../");
+          xobj.open('GET', '/static/data.json', true);
+          xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+              callback(JSON.parse(xobj.responseText));
             }
+          };
+          xobj.send(null);  
+          }
+            <!-- https://stackoverflow.com/questions/48073151/read-local-json-file-into-variable -->
+         window.eqfeed_callback = function() {
+            loadJSON(function(json) {
+              for (var i = 0; i < json.length; i++) {
+                console.log("lon", lon, "lat", lat);
+                var lon = json[i].longitude;
+                var lat = json[i].latitude;
+                var latLng = new google.maps.LatLng(lat, lon);
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+              }
+            });
          }
       </script>
       <script async defer
