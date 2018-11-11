@@ -35,14 +35,14 @@ def main():
   count = 0
   simple = ret['data']['stations']
   for x in simple:
-    # print(x)
+    print(x)
     lon = x['lon']
     lat = x['lat']
     pair = '(' + str(lat) + ', ' + str(lon) + ')'
     lon_lat_dic[pair] = x
-    # if count == 3:
-    #   break
-    # count += 1
+    if count == 1:
+      break
+    count += 1
   x = closestStation(42, 32) 
-  print(x)
+  print(lon_lat_dic)
 main()
