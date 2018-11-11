@@ -41,6 +41,6 @@ def getEvents(lat, long):
                        "localized_address_display": event["venue"]["address"]["localized_address_display"], \
                        } ]
 
-    # with open('data.json', 'w') as f:
-    #     f.write(json.dumps(new_data, sort_keys=True, indent=4))
-    return json.dumps(new_data, sort_keys=True, indent=4)
+    with open('data.json', 'w') as f:
+        f.write(json.dumps(new_data, sort_keys=True, indent=4))
+    # return json.dumps(new_data, sort_keys=True, indent=4)
