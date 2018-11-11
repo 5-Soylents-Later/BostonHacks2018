@@ -49,4 +49,3 @@ def getNearestStation(urlan, urlon):
 	print(lon_lat_dic[x[0]])
 
 	return lon_lat_dic[x[0]]
-main()
