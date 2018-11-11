@@ -18,8 +18,8 @@ a{
    height: 100%;
 }
 
-.image{
-   background-image: url(../imgs/bike.jpg); 
+.img{
+   background-image: url("imgs/bike.jpg"); 
    background-repeat:  no-repeat; 
    background-position: center; 
    background-size: cover;
