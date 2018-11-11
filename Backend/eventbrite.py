@@ -1,12 +1,16 @@
 import requests, json
 from Keys import EBrite
+import bluebikes
 
-def getEvents(add, wit, lat, long, sort):
-    address = add
-    within = wit
+# (3) from blue bikes find nearby events
+
+
+def getEvents(lat, long):
+    # address = add
+    within = "1km"
     latitude = lat
     longitude = long
-    sort_by = sort
+    sort_by = ""
 
     response = requests.get(
         "https://www.eventbriteapi.com/v3/events/search/",
@@ -14,7 +18,7 @@ def getEvents(add, wit, lat, long, sort):
             "Authorization": "Bearer " + EBrite,
         },
         verify = True,  # Verify SSL certificate
-        params = {"location.address": address, \
+        params = {
                   "location.within": within, \
                   "location.latitude": latitude, \
                   "location.longitude": longitude, \
@@ -38,4 +42,9 @@ def getEvents(add, wit, lat, long, sort):
                        } ]
 
     return json.dumps(new_data, sort_keys=True, indent=4)
+
+
+
+
+
 # print(json.dumps(new_data, sort_keys=True, indent=4))

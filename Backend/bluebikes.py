@@ -1,10 +1,14 @@
 import requests
 import math
 import sys
+import pandas as pd
+
+# (2) - from locations find nearest bluebike station
 
 start_station = None
 end_station = None
 
+# bikes = pd.read_csv("Hubway_Stations_as_of_July_2017.csv")
 lon_lat_dic = {}
 def calcDistance(lon, lat, pair):
 	pair = pair[1:-1]
@@ -25,24 +29,24 @@ def closestStation(lo, la):
 			station = coord
 	return [station, minimum]
 
-def main():
-#   uri = 'https://gbfs.bluebikes.com/gbfs/gbfs.json'
-  url = 'https://gbfs.bluebikes.com/gbfs/en/station_information.json'
-  response = requests.get(url)
-  ret = response.json()
-  # for x in ret['data']['en']['feeds']:
-  #   print(x) 
-  count = 0
-  simple = ret['data']['stations']
-  for x in simple:
+def getNearestStation(urlan, urlon):
+	url = 'https://gbfs.bluebikes.com/gbfs/en/station_information.json'
+	response = requests.get(url)
+	ret = response.json()
+
+	count = 0
+	simple = ret['data']['stations']
+	# print(simple)
+	for x in simple:
     # print(x)
-    lon = x['lon']
-    lat = x['lat']
-    pair = '(' + str(lat) + ', ' + str(lon) + ')'
-    lon_lat_dic[pair] = x
-    # if count == 3:
-    #   break
-    # count += 1
-  x = closestStation(42, 32) 
-  print(x)
+		lon = x['lon']
+		lat = x['lat']
+
+		pair = '(' + str(lat) + ', ' + str(lon) + ')'
+		lon_lat_dic[pair] = x
+
+	x = closestStation(urlan, urlon)
+	print(lon_lat_dic[x[0]])
+
+	return lon_lat_dic[x[0]]
 main()
