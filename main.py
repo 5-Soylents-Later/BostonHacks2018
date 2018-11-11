@@ -13,7 +13,7 @@ def main():
     print(request.form)
     address = request.form["serial"]
     step1 = locations.latlongAddress(address)
-    lat, lon = step1[0], step2[1]
+    lat, lon = step1[0], step1[1]
     step2 = bluebikes.getNearestStation(lat, lon)
     lat, lon = step2['lat'], step2['lon']
     step3 = eventbrite.getEvents(lat, lon)
