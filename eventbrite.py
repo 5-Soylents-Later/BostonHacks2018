@@ -1,4 +1,6 @@
-import requests, json
+import requests, json, os
+from pathlib import Path
+
 from Keys import EBrite
 #from . Keys import EBrite
 #from . import bluebikes
@@ -41,6 +43,10 @@ def getEvents(lat, long):
                        "localized_address_display": event["venue"]["address"]["localized_address_display"], \
                        } ]
 
-    with open('data.json', 'w') as f:
+    my_file = Path("/path/to/file")
+    if my_file.is_file():
+        # file exists
+        os.remove("./static/data.json")
+    with open('./static/data.json', 'w') as f:
         f.write(json.dumps(new_data, sort_keys=True, indent=4))
     # return json.dumps(new_data, sort_keys=True, indent=4)

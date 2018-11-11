@@ -13,4 +13,5 @@ def latlongAddress(add):
     URL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + GMaps
     r = requests.get(url = URL)
     data = r.json()
+    print(data)
     return [data["results"][0]["geometry"]["location"]["lat"], data["results"][0]["geometry"]["location"]["lng"]]
