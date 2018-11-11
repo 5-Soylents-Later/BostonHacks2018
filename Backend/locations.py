@@ -2,19 +2,18 @@ from Keys import GMaps
 import requests
 import pandas as pd
 
+# (1) - From front end to here
 
-
-def latlongAddress(id):
+def latlongAddress(add):
 
     bikes = pd.read_csv("Hubway_Stations_as_of_July_2017.csv")
-    lat = bikes.loc[id]['Latitude']
-    long = bikes.loc[id]['Longitude']
-    
-    URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ str(lat) + "," + str(long) + "&key=" + GMaps
+    address = add.replace(" ", "+")
+    # URL = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ str(lat) + "," + str(long) + "&key=" + GMaps
+    URL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + GMaps
     r = requests.get(url = URL)
     data = r.json()
-    return data["results"][0]["formatted_address"]
+    return [data["results"][0]["geometry"]["location"]["lat"], data["results"][0]["geometry"]["location"]["lng"]]
 
 
 
-# print(latlongAddress(42.325333, -71.075354))
+print(latlongAddress("91 Bay State Rd, Boston MA 02215"))
