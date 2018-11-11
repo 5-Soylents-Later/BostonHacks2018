@@ -2,16 +2,20 @@ import locations, bluebikes, eventbrite
 from flask import Flask, request, render_template, jsonify
 
 app = Flask(__name__)
+if __name__ == '__main__':
+   app.run(
+       debug=True,
+   )
 
 # form is gonna send this dude to /wow
 @app.route("/wow", methods=[ "GET", "POST" ])
 def main():
     # print(request.form)
     address = request.form["serial"]
-    step1 = latlongAddress(address)
-    step2 = getNearestStation(step1[0], step1[1])
+    step1 = locations.latlongAddress(address)
+    step2 = bluebikes.getNearestStation(step1[0], step1[1])
     lat, long = step2['lat'], step2['lon']
-    step3 = getEvents(lat, long)
+    step3 = eventbrite.getEvents(lat, long)
     return render_template("index.html")
 
 @app.route("/")
