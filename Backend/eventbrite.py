@@ -38,6 +38,6 @@ def getEvents(lat, long):
                        "longitude": event["venue"]["longitude"], \
                        "localized_address_display": event["venue"]["address"]["localized_address_display"], \
                        } ]
-                       
+
     with open('data.json', 'w') as f:
         f.write(json.dumps(new_data, sort_keys=True, indent=4))
