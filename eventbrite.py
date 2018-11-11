@@ -7,7 +7,7 @@ import bluebikes
 # (3) from blue bikes find nearby events
 
 def getEvents(lat, long):
-    within = "10km"
+    within = "1km"
     latitude = lat
     longitude = long
     sort_by = ""
