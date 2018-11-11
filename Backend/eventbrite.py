@@ -1,11 +1,13 @@
 import requests, json
-from Keys import EBrite
-import bluebikes
+# from Keys import EBrite
+from .Keys import EBrite
+from . import bluebikes
+# import bluebikes
 
 # (3) from blue bikes find nearby events
 
 def getEvents(lat, long):
-    within = "1km"
+    within = "10km"
     latitude = lat
     longitude = long
     sort_by = ""
@@ -39,5 +41,6 @@ def getEvents(lat, long):
                        "localized_address_display": event["venue"]["address"]["localized_address_display"], \
                        } ]
 
-    with open('data.json', 'w') as f:
-        f.write(json.dumps(new_data, sort_keys=True, indent=4))
+    # with open('data.json', 'w') as f:
+    #     f.write(json.dumps(new_data, sort_keys=True, indent=4))
+    return json.dumps(new_data, sort_keys=True, indent=4)

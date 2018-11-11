@@ -6,4 +6,4 @@ app = Flask(__name__)
 
 @app.route("/output")
 def output():
-	return eventbrite.getEvents("","","40","-20","")
+	return eventbrite.getEvents(40,-20)
